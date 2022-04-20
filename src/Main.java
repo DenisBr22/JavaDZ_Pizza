@@ -66,6 +66,8 @@ class Main {
                 }
             }
             order.printOrder();
+            StoryOrder storyOrder = new StoryOrder();
+            storyOrder.addOrderInStory(order);
         }
     }
 
