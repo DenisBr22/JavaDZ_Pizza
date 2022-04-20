@@ -7,9 +7,10 @@ import java.util.Scanner;
 class Main {
 
     public static final String msgYesOrNot = "Введите да или нет";
-    public static final String msgSorry = "Жаль, что Вы передумали";
+    public static final String msgSorry = "Рады будем видеть Вас снова!";
     public static final String msgYes = "да";
     public static final String msgNot = "нет";
+    public static final String msgStop = "«стоп»";
     public static List<Product> menu = new ArrayList<>();
 
     public static void main(String[] args) {
@@ -30,7 +31,7 @@ class Main {
                 msgYesOrNot);
         while (true) {
             String answer = scanner.nextLine();
-            if (answer.equalsIgnoreCase(msgNot)) {
+            if (answer.equalsIgnoreCase(msgNot) || answer.equalsIgnoreCase(msgStop)) {
                 System.out.println(msgSorry);
                 break;
             } else if (answer.equalsIgnoreCase(msgYes)) {
@@ -49,7 +50,7 @@ class Main {
                         break;
                 }
             }
-            System.out.println("Введите №id из меню и количество для заказа, для завершения заказа введите «стоп»");
+            System.out.println("Введите №id из меню и количество для заказа, для завершения заказа введите " + msgStop);
             Basket order = new Basket();
             while (true) {
                 String answer3 = scanner.nextLine();
