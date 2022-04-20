@@ -17,18 +17,22 @@ public class Product {
     }
 
     public int getIdProduct() {
+
         return idProduct;
     }
 
     public void setIdProduct(int idProduct) {
+
         this.idProduct = idProduct;
     }
 
     public String getNameProduct() {
+
         return nameProduct;
     }
 
     public void setNameProduct(String nameProduct) {
+
         this.nameProduct = nameProduct;
     }
 
@@ -37,14 +41,15 @@ public class Product {
     }
 
     public void setPrice(int price) {
-        this.price = price;
+         this.price = price;
     }
 
     public int getRating() {
-        return rating;
+         return rating;
     }
 
     public void setRating(int rating) {
+
         this.rating = rating;
     }
 
@@ -53,7 +58,7 @@ public class Product {
         return "№ Id: " + idProduct +
                 ", наименование: " + nameProduct +
                 ", цена: " + price +
-                ", рэйтинг " + rating;
+                ", рейтинг " + rating;
     }
 
     @Override

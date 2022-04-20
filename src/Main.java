@@ -12,15 +12,14 @@ class Main {
     public static final String msgNot = "нет";
     public static List<Product> menu = new ArrayList<>();
 
-
     public static void main(String[] args) {
 
-        menu.add(new Pizza(1, "«4 сыра»", 250, 4));
-        menu.add(new Pizza(2, "«Деревенская»", 310, 2));
-        menu.add(new Pizza(3, "«Пепперони»", 330, 5));
-        menu.add(new Pizza(5, "«Чикаго»", 330, 3));
-        menu.add(new Pizza(6, "«Мюнхенская»", 390, 3));
-        menu.add(new Pizza(7, "«С грибами и ветчиной»", 310, 4));
+        menu.add(new Pizza(1, "«Пицца 4 сыра»", 250, 4));
+        menu.add(new Pizza(2, "«Пицца Деревенская»", 310, 2));
+        menu.add(new Pizza(3, "«Пицца Пепперони»", 330, 5));
+        menu.add(new Pizza(5, "«Пицца Чикаго»", 330, 3));
+        menu.add(new Pizza(6, "«Пицца Мюнхенская»", 390, 3));
+        menu.add(new Pizza(7, "«Пицца с грибами и ветчиной»", 310, 4));
         menu.add(new Burger(8, "«Бургер Кинг-Конг»", 150, 4));
         menu.add(new Burger(9, "«ЧизБургер»", 200, 5));
 
@@ -29,48 +28,47 @@ class Main {
         System.out.println("Добро пожаловать в нашу пиццерию «Pizza Bello»\n" +
                 "Вывести меню?\n" +
                 msgYesOrNot);
-
-        String answer = scanner.nextLine();
-        if (answer.equalsIgnoreCase(msgYes)) {
-            System.out.println("Отсортировать меню 1: по цене, 2: по наименованию, 3: по рейтингу");
-            int numberOption = scanner.nextInt();
-            switch (numberOption) {
-                case 1:
-                    printListSortPrice(menu);
-                    break;
-                case 2:
-                    printListSortName(menu);
-                    break;
-                case 3:
-                    printListSortRating(menu);
-                    break;
-            }
-        } else if (answer.equalsIgnoreCase(msgNot)) {
-            System.out.println(msgSorry);
-        }
-
-        System.out.println("\nВы готовы сделать заказ? \n" +
-                "Введите " + msgYesOrNot);
-        String answer2 = scanner.nextLine();
-        if (answer2.equalsIgnoreCase(msgNot)) {
-            System.out.println(msgSorry);
-        } else if (answer2.equalsIgnoreCase(msgYes)){
-
-        System.out.println("Заказ");
-        System.out.println("Введите №id из меню и количество для заказа, для завершения заказа наберите end");
-//
         while (true) {
-            String answer3 = scanner.nextLine();
-            if (answer3.equalsIgnoreCase("end")) {
+            String answer = scanner.nextLine();
+            if (answer.equalsIgnoreCase(msgNot)) {
+                System.out.println(msgSorry);
                 break;
+            } else if (answer.equalsIgnoreCase(msgYes)) {
+                System.out.println("Отсортировать меню 1: по цене, 2: по наименованию, 3: по рейтингу");
+                String answer4 = scanner.nextLine();
+                int numberOption = Integer.parseInt(answer4);
+                switch (numberOption) {
+                    case 1:
+                        printListSortPrice(menu);
+                        break;
+                    case 2:
+                        printListSortName(menu);
+                        break;
+                    case 3:
+                        printListSortRating(menu);
+                        break;
+                }
             }
-            String id = scanner.nextLine();
-            String quantity = scanner.nextLine();
-            int idS = Integer.parseInt(id);
-            int quantityS = Integer.parseInt(quantity);
+            System.out.println("Введите №id из меню и количество для заказа, для завершения заказа введите «стоп»");
+            Basket order = new Basket();
+            while (true) {
+                String answer3 = scanner.nextLine();
+                if (answer3.equalsIgnoreCase("стоп")) {
+                    break;
+                }
+                int idS = Integer.parseInt(answer3);
+                String answer5 = scanner.nextLine();
+                int quantityS = Integer.parseInt(answer5);
+                for (Product p : menu) {
+                    if (p.getIdProduct() == idS) {
+                        order.addOrder(p, quantityS);
+                    }
+                }
+            }
+            order.printOrder();
         }
     }
- }
+
 
     public static void printListSortPrice(List<Product> products) {
         products.stream()
